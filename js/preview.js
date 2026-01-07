@@ -1,48 +1,50 @@
-const branchId = localStorage.getItem("selectedBranch");
-const branch = BRANCHES.find(b => b.id === branchId);
-
+const branch = BRANCHES.find(b => b.id === localStorage.getItem("selectedBranch"));
 const items = JSON.parse(localStorage.getItem("invoiceItems"));
-let total = 0;
 
-let html = `
-<h2>${branch.name}</h2>
-<p>${branch.address}</p>
-<p>GSTIN: ${branch.gstin}</p>
+companyName.innerText = branch.name;
+companyName2.innerText = branch.name;
+companyAddress.innerText = branch.address;
+companyGstin.innerText = branch.gstin;
+companyState.innerText = branch.state;
+bankDetails.innerText = branch.bank;
 
-<hr>
+invoiceNo.innerText = localStorage.getItem("invoiceNo");
+invoiceDate.innerText = new Date().toLocaleDateString("en-GB");
 
-<p><b>${localStorage.getItem("invoiceType")}</b></p>
-<p>Invoice No: ${localStorage.getItem("invoiceNo")}</p>
-<p>Customer: ${localStorage.getItem("custName")}</p>
+custName.innerText = localStorage.getItem("custName");
+custName2.innerText = localStorage.getItem("custName");
+custState.innerText = localStorage.getItem("custState");
+custState2.innerText = localStorage.getItem("custState");
 
-<table>
-<tr><th>Item</th><th>Qty</th><th>Rate</th><th>Total</th></tr>
-`;
+let subtotal = 0;
 
-items.forEach(i => {
-  total += i.total;
-  html += `<tr>
-    <td>${i.name}</td>
-    <td>${i.q}</td>
-    <td>${i.r}</td>
-    <td>${i.total}</td>
-  </tr>`;
+items.forEach((i, index) => {
+  subtotal += i.total;
+  itemRows.innerHTML += `
+    <tr>
+      <td>${index + 1}</td>
+      <td>${i.name}</td>
+      <td>9403</td>
+      <td>${i.q}</td>
+      <td>${i.r.toFixed(2)}</td>
+      <td>${i.total.toFixed(2)}</td>
+    </tr>`;
 });
 
-const gst = total * (branch.gstPercent / 100);
+const cgstVal = subtotal * 0.09;
+const sgstVal = subtotal * 0.09;
+const grand = subtotal + cgstVal + sgstVal;
 
-html += `
-</table>
+cgst.innerText = cgstVal.toFixed(2);
+sgst.innerText = sgstVal.toFixed(2);
+grandTotal.innerText = "₹ " + grand.toFixed(2);
 
-<p>Subtotal: ${total}</p>
-<p>GST (${branch.gstPercent}%): ${gst}</p>
-<h3>Grand Total: ${total + gst}</h3>
+amountWords.innerText = numberToWords(Math.round(grand)) + " Only";
 
-<p>${branch.bank}</p>
-`;
-
-document.getElementById("invoice").innerHTML = html;
-
-function back() {
+function goBack() {
   window.location.href = "invoice.html";
+}
+
+function numberToWords(num) {
+  return "INR " + num.toLocaleString("en-IN");
 }
