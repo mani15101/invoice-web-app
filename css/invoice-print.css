@@ -1,0 +1,80 @@
+body {
+  font-family: Arial;
+  background: #fff;
+}
+
+.invoice {
+  width: 210mm;
+  margin: auto;
+  padding: 10mm;
+  border: 1px solid #000;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+td, th {
+  border: 1px solid #000;
+  padding: 4px;
+  vertical-align: top;
+}
+
+.header-table td {
+  width: 50%;
+}
+
+.two-col td {
+  width: 50%;
+}
+
+.item-table th {
+  text-align: center;
+}
+
+.item-table td {
+  text-align: center;
+}
+
+.item-table td:nth-child(2) {
+  text-align: left;
+}
+
+.totals td {
+  text-align: right;
+}
+
+.grand td {
+  font-weight: bold;
+}
+
+.footer td {
+  height: 80px;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.small {
+  font-size: 11px;
+}
+
+.no-print {
+  margin: 10px;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+  body {
+    margin: 0;
+  }
+}
