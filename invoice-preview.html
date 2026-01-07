@@ -2,16 +2,111 @@
 <html>
 <head>
   <title>Invoice Preview</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/invoice-print.css">
 </head>
 <body>
 
 <div class="no-print">
-  <button onclick="back()">⬅ Back</button>
+  <button onclick="goBack()">⬅ Back</button>
   <button onclick="window.print()">🖨 Print</button>
 </div>
 
-<div id="invoice"></div>
+<div class="invoice">
+
+  <h2 class="center">PROFORMA INVOICE</h2>
+
+  <!-- HEADER -->
+  <table class="header-table">
+    <tr>
+      <td>
+        <strong id="companyName"></strong><br>
+        <span id="companyAddress"></span><br>
+        GSTIN/UIN: <span id="companyGstin"></span><br>
+        State Name: <span id="companyState"></span>
+      </td>
+      <td>
+        Voucher No: <span id="invoiceNo"></span><br>
+        Dated: <span id="invoiceDate"></span><br>
+        Mode/Terms of Payment:
+      </td>
+    </tr>
+  </table>
+
+  <!-- CONSIGNEE / BUYER -->
+  <table class="two-col">
+    <tr>
+      <td>
+        <strong>Consignee (Ship to)</strong><br>
+        <span id="custName"></span><br>
+        <span id="custAddress"></span><br>
+        GSTIN: <span id="custGstin"></span><br>
+        State: <span id="custState"></span>
+      </td>
+      <td>
+        <strong>Buyer (Bill to)</strong><br>
+        <span id="custName2"></span><br>
+        <span id="custAddress2"></span><br>
+        GSTIN: <span id="custGstin2"></span><br>
+        State: <span id="custState2"></span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ITEM TABLE -->
+  <table class="item-table">
+    <thead>
+      <tr>
+        <th>Sl No</th>
+        <th>Description of Goods</th>
+        <th>HSN/SAC</th>
+        <th>Qty</th>
+        <th>Rate</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody id="itemRows"></tbody>
+  </table>
+
+  <!-- TOTALS -->
+  <table class="totals">
+    <tr>
+      <td>Output CGST @ 9%</td>
+      <td id="cgst"></td>
+    </tr>
+    <tr>
+      <td>Output SGST @ 9%</td>
+      <td id="sgst"></td>
+    </tr>
+    <tr class="grand">
+      <td>Total</td>
+      <td id="grandTotal"></td>
+    </tr>
+  </table>
+
+  <!-- FOOTER -->
+  <table class="footer">
+    <tr>
+      <td>
+        Amount Chargeable (in words)<br>
+        <strong id="amountWords"></strong>
+      </td>
+      <td>
+        Company's Bank Details<br>
+        <span id="bankDetails"></span>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="right">
+        for <strong id="companyName2"></strong><br><br>
+        Authorised Signatory
+      </td>
+    </tr>
+  </table>
+
+  <p class="center small">This is a Computer Generated Document</p>
+
+</div>
 
 <script src="js/branches.js"></script>
 <script src="js/preview.js"></script>
