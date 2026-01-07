@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Invoice</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<button onclick="goBack()">⬅ Back</button>
+
+<h2>Create Invoice</h2>
+
+<label>Invoice Type</label>
+<select id="invoiceType">
+  <option>Invoice</option>
+  <option>Proforma Invoice</option>
+  <option>Quotation</option>
+</select>
+
+<label>Invoice No</label>
+<input id="invoiceNo">
+
+<label>Date</label>
+<input type="date" id="invoiceDate">
+
+<h3>Customer Details</h3>
+<input placeholder="Customer Name" id="custName">
+<input placeholder="State" id="custState">
+
+<h3>Item</h3>
+<input placeholder="Item Name" id="itemName">
+<input type="number" placeholder="Qty" id="qty">
+<input type="number" placeholder="Rate" id="rate">
+
+<button onclick="addItem()">Add Item</button>
+
+<table id="itemTable">
+  <tr><th>Name</th><th>Qty</th><th>Rate</th><th>Total</th></tr>
+</table>
+
+<button onclick="viewInvoice()">View Invoice</button>
+
+<script src="js/branches.js"></script>
+<script src="js/invoice.js"></script>
+</body>
+</html>
